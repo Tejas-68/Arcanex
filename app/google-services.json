@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "171813284947",
+    "project_id": "procollegia",
+    "storage_bucket": "procollegia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171813284947:android:fa0f9348e07f2e84ddaaa6",
+        "android_client_info": {
+          "package_name": "com.procollegia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuQcMQzovDBqaFQMzYQw4JpypVqCRrJpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base surface background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/neumorph_bg" />
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+
+    <!-- Inner Shadow Dark (Top-Left) -->
+    <item
+        android:bottom="2dp"
+        android:right="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/neumorph_shadow_dark"/>
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+
+    <!-- Inner Shadow Light (Bottom-Right) -->
+    <item
+        android:left="2dp"
+        android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/neumorph_shadow_light"/>
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+
+    <!-- Fill -->
+    <item
+        android:bottom="2dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/neumorph_bg_dark" />
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+</layer-list>

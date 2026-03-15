@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp"
+    android:background="@drawable/bg_list_item">
+
+    <!-- Avatar Initial -->
+    <TextView
+        android:id="@+id/tv_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/bg_neumorph_circle_flat"
+        android:backgroundTint="#8D6E63" 
+        android:textColor="@android:color/white"
+        android:text="P"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginEnd="12dp" />
+
+    <!-- Name -->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Priya M."
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <!-- Item borrowed -->
+    <TextView
+        android:id="@+id/tv_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:text="Basketball x1"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <!-- Days late -->
+    <TextView
+        android:id="@+id/tv_days_late"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 days late"
+        android:textColor="@color/text_primary"
+        android:textSize="12sp"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Fine Tag -->
+    <TextView
+        android:id="@+id/tv_fine"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:background="@drawable/bg_marks_input_alert"
+        android:text="Fine: Rs.20"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/accent_red"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingHorizontal="10dp" />
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ProCollegia Main Theme — Neumorphic Light (bg: #E6E9F0) -->
+    <style name="Theme.ProCollegia" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorPrimaryVariant">@color/accent_blue_dark</item>
+        <item name="colorOnPrimary">@color/text_on_accent</item>
+        <item name="colorSecondary">@color/accent_green</item>
+        <item name="colorOnSecondary">@color/text_on_accent</item>
+        <item name="android:colorBackground">@color/neumorph_bg</item>
+        <item name="android:windowBackground">@color/neumorph_bg</item>
+        <item name="android:statusBarColor">@color/neumorph_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/neumorph_bg</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Splash Theme (no flicker) -->
+    <style name="Theme.ProCollegia.Splash" parent="Theme.ProCollegia">
+        <item name="android:windowBackground">@color/neumorph_bg</item>
+        <item name="android:statusBarColor">@color/neumorph_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- No Action Bar variant for all activities -->
+    <style name="Theme.ProCollegia.NoActionBar" parent="Theme.ProCollegia">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- TextAppearance styles (neumorphic typography) -->
+    <style name="TextAppearance.ProCollegia.Heading" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Subheading" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Label" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- TextInputLayout neumorphic style -->
+    <style name="ProCollegia.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/neumorph_bg</item>
+        <item name="boxStrokeColor">@color/accent_blue</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="hintTextColor">@color/accent_blue</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+    </style>
+
+    <!-- Neumorphic raised button style -->
+    <style name="ProCollegia.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/accent_blue</item>
+        <item name="android:textColor">@color/text_on_accent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+</resources>

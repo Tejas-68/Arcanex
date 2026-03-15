@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_neumorph_raised"
+    android:gravity="center_vertical">
+
+    <!-- Avatar circle -->
+    <TextView
+        android:id="@+id/tv_avatar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_neumorph_pill" />
+
+    <!-- Info block -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="14dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Staff Name"
+            android:textAppearance="@style/TextAppearance.ProCollegia.Subheading"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teacher · Dept"
+            android:textAppearance="@style/TextAppearance.ProCollegia.Caption"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <!-- Email badge -->
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📧"
+        android:textSize="18sp" />
+</LinearLayout>

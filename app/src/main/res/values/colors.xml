@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- =============================================
+         ProCollegia Neumorphic Design System Colors
+         Background: #E6E9F0 (all surfaces)
+         ============================================= -->
+
+    <!-- Core Background -->
+    <color name="neumorph_bg">#E6E9F0</color>
+    <color name="neumorph_bg_dark">#D1D9E6</color>
+    <color name="neumorph_surface">#EAECF0</color>
+    <color name="neumorph_shadow_light">#FFFFFF</color>
+    <color name="neumorph_shadow_dark">#B8BEC9</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#2D3748</color>
+    <color name="text_secondary">#718096</color>
+    <color name="text_muted">#A0AEC0</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <!-- Accent Colors -->
+    <color name="accent_blue">#4A90D9</color>
+    <color name="accent_blue_dark">#3A7BC8</color>
+    <color name="accent_blue_light">#EBF4FF</color>
+    <color name="accent_green">#48BB78</color>
+    <color name="accent_green_dark">#38A169</color>
+    <color name="accent_green_light">#F0FFF4</color>
+    <color name="accent_red">#FC8181</color>
+    <color name="accent_red_dark">#E53E3E</color>
+    <color name="accent_red_light">#FFF5F5</color>
+    <color name="accent_gold">#ECC94B</color>
+    <color name="accent_gold_dark">#D69E2E</color>
+    <color name="accent_gold_light">#FFFFF0</color>
+    <color name="accent_purple">#9F7AEA</color>
+    <color name="accent_purple_light">#FAF5FF</color>
+    <color name="accent_orange">#ED8936</color>
+    <color name="accent_orange_light">#FFFAF0</color>
+
+    <!-- Status Colors -->
+    <color name="status_present">#48BB78</color>
+    <color name="status_absent">#FC8181</color>
+    <color name="status_pending">#ECC94B</color>
+    <color name="status_approved">#48BB78</color>
+    <color name="status_rejected">#FC8181</color>
+
+    <!-- Dividers and Borders -->
+    <color name="divider">#D1D9E6</color>
+    <color name="border_light">#E2E8F0</color>
+
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="scrim">#80000000</color>
+
+    <!-- Chips / Badges -->
+    <color name="badge_blue_bg">#EBF4FF</color>
+    <color name="badge_blue_text">#2B6CB0</color>
+    <color name="badge_green_bg">#F0FFF4</color>
+    <color name="badge_green_text">#276749</color>
+    <color name="badge_red_bg">#FFF5F5</color>
+    <color name="badge_red_text">#C53030</color>
+    <color name="badge_gold_bg">#FFFFF0</color>
+    <color name="badge_gold_text">#744210</color>
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.ProCollegia" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="android:colorBackground">@color/neumorph_bg</item>
+        <item name="android:windowBackground">@color/neumorph_bg</item>
+        <item name="android:statusBarColor">@color/neumorph_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
