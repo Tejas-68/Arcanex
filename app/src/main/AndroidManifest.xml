@@ -31,8 +31,9 @@
         </activity>
 
         <activity android:name=".RegisterActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".LeaveRequestActivity" android:exported="false" android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LoginActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".StudentDashboardActivity" android:exported="false" />
+        <activity android:name=".StudentDashboardActivity" android:exported="false" android:windowSoftInputMode="adjustPan" />
         <activity android:name=".TeacherDashboardActivity" android:exported="false" />
         <activity android:name=".PtAdminDashboardActivity" android:exported="false" />
         <activity android:name=".PrincipalDashboardActivity" android:exported="false" />
