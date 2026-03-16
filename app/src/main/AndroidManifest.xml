@@ -8,11 +8,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -27,75 +22,25 @@
 
         <activity
             android:name=".SplashActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ProCollegia.Splash">
+            android:theme="@style/Theme.ProCollegia.Splash"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".RegisterActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".LoginActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".RegisterActivity" android:exported="false" />
-        <activity android:name=".RoleDetectionActivity" android:exported="false" />
-        <activity android:name=".ForgotPasswordActivity" android:exported="false" />
-
         <activity android:name=".StudentDashboardActivity" android:exported="false" />
-        <activity android:name=".TimetableActivity" android:exported="false" />
-        <activity android:name=".StudentAttendanceActivity" android:exported="false" />
-        <activity android:name=".StudentMarksActivity" android:exported="false" />
-        <activity android:name=".StudentLeaveRequestActivity" android:exported="false" />
-        <activity android:name=".StudentAlertsActivity" android:exported="false" />
-        <activity android:name=".StudentSportsHomeActivity" android:exported="false" />
-        <activity android:name=".StudentBorrowEquipmentActivity" android:exported="false" />
-
         <activity android:name=".TeacherDashboardActivity" android:exported="false" />
-        <activity android:name=".TeacherAttendanceActivity" android:exported="false" />
-        <activity android:name=".TeacherEditMarksActivity" android:exported="false" />
-        <activity android:name=".TeacherLeaveRequestsActivity" android:exported="false" />
-        <activity android:name=".TeacherEditHonorScoreActivity" android:exported="false" />
-
-        <activity android:name=".PtDashboardActivity" android:exported="false" />
-        <activity android:name=".PtAttendanceActivity" android:exported="false" />
-        <activity android:name=".PtInventoryActivity" android:exported="false" />
-        <activity android:name=".PtCreateCompetitionActivity" android:exported="false" />
-
+        <activity android:name=".PtAdminDashboardActivity" android:exported="false" />
         <activity android:name=".PrincipalDashboardActivity" android:exported="false" />
-        <activity android:name=".PrincipalAnalyzeActivity" android:exported="false" />
-        
-        <!-- Profile Activities -->
-        <activity android:name=".StudentProfileActivity" android:exported="false" />
-        <activity android:name=".TeacherProfileActivity" android:exported="false" />
-        <activity android:name=".PtProfileActivity" android:exported="false" />
-        <activity android:name=".PrincipalProfileActivity" android:exported="false" />
-        
-        <!-- Sports Module Activities -->
-        <activity android:name=".StudentSportsTournamentsActivity" android:exported="false" />
-        <activity android:name=".StudentSportsAttendanceActivity" android:exported="false" />
-        
-        <!-- Fragment Host Activities — one per role -->
-        <activity android:name=".StudentHostActivity"   android:exported="false" />
-        <activity android:name=".TeacherHostActivity"   android:exported="false" />
-        <activity android:name=".PtHostActivity"        android:exported="false" />
-        <activity android:name=".PrincipalHostActivity" android:exported="false" />
 
-        <!-- Principal Admin Activities -->
-        <activity android:name=".PrincipalStaffsActivity" android:exported="false" />
-        <!-- Firebase Cloud Messaging background service -->
-        <service
-            android:name=".ProcollegiaFirebaseMessagingService"
+        <activity
+            android:name=".MainActivity"
             android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <!-- Barcode Scanner -->
-        <activity android:name=".BarcodeScannerActivity" android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- Phase 4: Leaderboard -->
-        <activity android:name=".LeaderboardActivity" android:exported="false" />
+        </activity>
 
     </application>
 

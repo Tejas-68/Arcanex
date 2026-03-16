@@ -2,28 +2,24 @@ package com.procollegia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
-import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
-    private AppCompatButton btnLogin;
-    private TextView tvForgotPassword, tvRegisterLink;
-    private ImageView ivPasswordToggle;
-    private View loadingOverlay;
+    private Button btnLogin;
+    private android.widget.TextView tvRegister;
+    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    private boolean pwdVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,91 +27,93 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        initViews();
-        setListeners();
+
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        tvRegister = findViewById(R.id.tvRegister);
+        progressBar = findViewById(R.id.progressBar);
+
+        btnLogin.setOnClickListener(v -> loginUser());
+        
+        tvRegister.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        });
     }
 
-    private void initViews() {
-        etEmail = findViewById(R.id.et_email);
-        etPassword = findViewById(R.id.et_password);
-        btnLogin = findViewById(R.id.btn_login);
-        tvForgotPassword = findViewById(R.id.tv_forgot_password);
-        tvRegisterLink = findViewById(R.id.tv_register_link);
-        ivPasswordToggle = findViewById(R.id.iv_password_toggle);
-        loadingOverlay = findViewById(R.id.loading_overlay);
-    }
+    private void loginUser() {
+        String email = etEmail.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
 
-    private void setListeners() {
-        btnLogin.setOnClickListener(v -> attemptLogin());
-
-        tvForgotPassword.setOnClickListener(v ->
-                startActivity(new Intent(this, ForgotPasswordActivity.class)));
-
-        // Register link now works
-        tvRegisterLink.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterActivity.class)));
-
-        // Password show / hide toggle
-        if (ivPasswordToggle != null) {
-            ivPasswordToggle.setOnClickListener(v -> {
-                pwdVisible = !pwdVisible;
-                if (pwdVisible) {
-                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    ivPasswordToggle.setImageTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    androidx.core.content.ContextCompat.getColor(this, R.color.accent_blue)));
-                } else {
-                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    ivPasswordToggle.setImageTintList(
-                            android.content.res.ColorStateList.valueOf(
-                                    androidx.core.content.ContextCompat.getColor(this, R.color.text_muted)));
-                }
-                etPassword.setSelection(etPassword.getText().length());
-            });
-        }
-    }
-
-    private void attemptLogin() {
-        String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
-        String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
-
-        etEmail.setError(null);
-        etPassword.setError(null);
-
-        boolean valid = true;
-        if (TextUtils.isEmpty(email)) {
-            etEmail.setError(getString(R.string.error_empty_fields));
-            valid = false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            etEmail.setError(getString(R.string.error_invalid_email));
-            valid = false;
-        }
-        if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.error_empty_fields));
-            valid = false;
-        } else if (password.length() < 6) {
-            etPassword.setError(getString(R.string.error_password_short));
-            valid = false;
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter all details", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        if (!valid) return;
+        // --- DEVELOPMENT BYPASS FOR QUICK TESTING ---
+        if (email.startsWith("student")) {
+            startActivity(new Intent(this, StudentDashboardActivity.class));
+            finish();
+            return;
+        } else if (email.startsWith("teacher")) {
+            startActivity(new Intent(this, TeacherDashboardActivity.class));
+            finish();
+            return;
+        } else if (email.startsWith("pt")) {
+            startActivity(new Intent(this, PtAdminDashboardActivity.class));
+            finish();
+            return;
+        } else if (email.startsWith("principal")) {
+            startActivity(new Intent(this, PrincipalDashboardActivity.class));
+            finish();
+            return;
+        }
 
-        setLoading(true);
+        // --- PRODUCTION FIREBASE LOGIN ---
+        progressBar.setVisibility(View.VISIBLE);
+        btnLogin.setEnabled(false);
+
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    setLoading(false);
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(this, RoleDetectionActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(this, getString(R.string.error_login_failed), Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    String uid = task.getResult().getUser().getUid();
+                    FirebaseFirestore.getInstance().collection("users").document(uid).get()
+                        .addOnSuccessListener(documentSnapshot -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnLogin.setEnabled(true);
 
-    private void setLoading(boolean isLoading) {
-        if (loadingOverlay != null)
-            loadingOverlay.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-        btnLogin.setEnabled(!isLoading);
+                            if (documentSnapshot.exists()) {
+                                String role = documentSnapshot.getString("role");
+                                Toast.makeText(LoginActivity.this, "Welcome Back", Toast.LENGTH_SHORT).show();
+                                
+                                Intent intent;
+                                if ("Teacher".equals(role)) {
+                                    intent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
+                                } else if ("PT Admin".equals(role)) {
+                                    intent = new Intent(LoginActivity.this, PtAdminDashboardActivity.class);
+                                } else if ("Principal".equals(role)) {
+                                    intent = new Intent(LoginActivity.this, PrincipalDashboardActivity.class);
+                                } else {
+                                    intent = new Intent(LoginActivity.this, StudentDashboardActivity.class);
+                                }
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "User details not found. Please register.", Toast.LENGTH_LONG).show();
+                                mAuth.signOut();
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            progressBar.setVisibility(View.GONE);
+                            btnLogin.setEnabled(true);
+                            Toast.makeText(LoginActivity.this, "Error fetching details: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        });
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    btnLogin.setEnabled(true);
+                    Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
     }
 }
