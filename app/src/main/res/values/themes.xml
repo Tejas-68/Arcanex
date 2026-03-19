@@ -81,4 +81,14 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+    <!-- Profile info row: horizontal, 56dp tall, padded -->
+    <style name="ProfileRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+
 </resources>

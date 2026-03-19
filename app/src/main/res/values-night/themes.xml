@@ -1,9 +1,87 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ProCollegia Main Theme — Dark Mode (bg: #2C3241) -->
     <style name="Theme.ProCollegia" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorPrimaryVariant">@color/accent_blue_dark</item>
+        <item name="colorOnPrimary">@color/text_on_accent</item>
+        <item name="colorSecondary">@color/accent_green</item>
+        <item name="colorOnSecondary">@color/text_on_accent</item>
         <item name="android:colorBackground">@color/neumorph_bg</item>
         <item name="android:windowBackground">@color/neumorph_bg</item>
         <item name="android:statusBarColor">@color/neumorph_bg</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item> <!-- Dark status bar, light icons -->
+        <item name="android:navigationBarColor">@color/neumorph_bg</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
+
+    <!-- Splash Theme -->
+    <style name="Theme.ProCollegia.Splash" parent="Theme.ProCollegia">
+        <item name="android:windowBackground">@color/neumorph_bg</item>
+        <item name="android:statusBarColor">@color/neumorph_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- No Action Bar variant -->
+    <style name="Theme.ProCollegia.NoActionBar" parent="Theme.ProCollegia">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- Typography (Text colors switch due to values-night/colors.xml) -->
+    <style name="TextAppearance.ProCollegia.Heading" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Subheading" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Body" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.ProCollegia.Label" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textColor">@color/text_muted</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- TextInputLayout dark neumorphic -->
+    <style name="ProCollegia.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/neumorph_bg</item>
+        <item name="boxStrokeColor">@color/accent_blue</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="hintTextColor">@color/accent_blue</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+    </style>
+
+    <!-- Button -->
+    <style name="ProCollegia.Button.Primary" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/accent_blue</item>
+        <item name="android:textColor">@color/text_on_accent</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ProfileRow for Dark Mode -->
+    <style name="ProfileRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+
 </resources>

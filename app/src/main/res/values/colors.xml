@@ -38,7 +38,7 @@
 
     <!-- Status Colors -->
     <color name="status_present">#48BB78</color>
-    <color name="status_absent">#FC8181</color>
+    <color name="status_absent">#FC8981</color>
     <color name="status_pending">#ECC94B</color>
     <color name="status_approved">#48BB78</color>
     <color name="status_rejected">#FC8181</color>
