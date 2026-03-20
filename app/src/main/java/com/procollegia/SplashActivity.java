@@ -34,25 +34,13 @@ public class SplashActivity extends AppCompatActivity {
 
         // Minimum splash delay
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // Check real Firebase Session
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
-                // User is already logged in, fetch role and route to dashboard
                 FirebaseFirestore.getInstance().collection("users").document(currentUser.getUid()).get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
-                            String role = documentSnapshot.getString("role");
-                            Intent intent;
-                            if ("Teacher".equals(role)) {
-                                intent = new Intent(SplashActivity.this, TeacherDashboardActivity.class);
-                            } else if ("PT Admin".equals(role)) {
-                                intent = new Intent(SplashActivity.this, PtAdminDashboardActivity.class);
-                            } else if ("Principal".equals(role)) {
-                                intent = new Intent(SplashActivity.this, PrincipalDashboardActivity.class);
-                            } else {
-                                intent = new Intent(SplashActivity.this, StudentDashboardActivity.class);
-                            }
-                            startActivity(intent);
-                            finish();
+                            routeToRole(documentSnapshot.getString("role"));
                         } else {
                             // Document missing, re-login required
                             FirebaseAuth.getInstance().signOut();
@@ -61,16 +49,30 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(SplashActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        FirebaseAuth.getInstance().signOut();
+                        // Network error? Don't sign out, just retry login
                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                         finish();
                     });
             } else {
-                // No user logged in, go to Login
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 finish();
             }
         }, 1500);
+    }
+
+    private void routeToRole(String role) {
+        Intent intent;
+        if ("Teacher".equals(role)) {
+            intent = new Intent(this, TeacherDashboardActivity.class);
+        } else if ("PT Admin".equals(role)) {
+            intent = new Intent(this, PtAdminDashboardActivity.class);
+        } else if ("Principal".equals(role)) {
+            intent = new Intent(this, PrincipalDashboardActivity.class);
+        } else {
+            intent = new Intent(this, StudentDashboardActivity.class);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

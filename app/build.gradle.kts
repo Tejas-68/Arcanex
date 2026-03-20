@@ -44,6 +44,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.preference:preference:1.2.1")
 
     // Lifecycle Components (MVVM)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.6.2")

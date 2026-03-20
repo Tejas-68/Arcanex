@@ -176,9 +176,10 @@
                     android:layout_height="50dp"
                     android:background="@drawable/bg_neumorph_input"
                     android:paddingHorizontal="16dp"
-                    android:hint="UUCMS ID (for students only)"
+                    android:hint="UUCMS ID (e.g. U11SZ23S0189) *"
                     android:textColorHint="@color/text_muted"
                     android:textColor="@color/text_primary"
+                    android:inputType="textCapCharacters"
                     android:layout_marginBottom="16dp" />
 
                 <EditText
@@ -219,7 +220,30 @@
                     android:textColorHint="@color/text_muted"
                     android:textColor="@color/text_primary"
                     android:inputType="number"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Login Code (set by Principal) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Institution Login Code"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etLoginCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_neumorph_input"
+                    android:paddingHorizontal="16dp"
+                    android:hint="Enter code provided by your institution *"
+                    android:textColorHint="@color/text_muted"
+                    android:textColor="@color/text_primary"
+                    android:inputType="textPassword"
                     android:layout_marginBottom="24dp" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

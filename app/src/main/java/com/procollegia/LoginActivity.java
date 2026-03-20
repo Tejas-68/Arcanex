@@ -50,25 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // --- DEVELOPMENT BYPASS FOR QUICK TESTING ---
-        if (email.startsWith("student")) {
-            startActivity(new Intent(this, StudentDashboardActivity.class));
-            finish();
-            return;
-        } else if (email.startsWith("teacher")) {
-            startActivity(new Intent(this, TeacherDashboardActivity.class));
-            finish();
-            return;
-        } else if (email.startsWith("pt")) {
-            startActivity(new Intent(this, PtAdminDashboardActivity.class));
-            finish();
-            return;
-        } else if (email.startsWith("principal")) {
-            startActivity(new Intent(this, PrincipalDashboardActivity.class));
-            finish();
-            return;
-        }
-
         // --- PRODUCTION FIREBASE LOGIN ---
         progressBar.setVisibility(View.VISIBLE);
         btnLogin.setEnabled(false);
@@ -89,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent;
                                 if ("Teacher".equals(role)) {
                                     intent = new Intent(LoginActivity.this, TeacherDashboardActivity.class);
+                                } else if ("HOD".equals(role)) {
+                                    intent = new Intent(LoginActivity.this, HodDashboardActivity.class);
                                 } else if ("PT Admin".equals(role)) {
                                     intent = new Intent(LoginActivity.this, PtAdminDashboardActivity.class);
                                 } else if ("Principal".equals(role)) {

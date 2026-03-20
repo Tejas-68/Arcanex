@@ -81,6 +81,16 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+    <style name="ProCollegia.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/accent_blue</item>
+        <item name="android:textColor">@color/accent_blue</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+    </style>
+
     <!-- Profile info row: horizontal, 56dp tall, padded -->
     <style name="ProfileRow">
         <item name="android:layout_width">match_parent</item>

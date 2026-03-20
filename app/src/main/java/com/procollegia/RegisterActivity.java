@@ -28,8 +28,12 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView tvBackToLogin;
     
     private EditText etName, etPhone, etRegEmail, etRegPassword;
-    private EditText etUucms, etCourse, etSem;
+    private EditText etUucms, etCourse, etSem, etLoginCode;
     private ProgressBar progressRegister;
+
+    // Temporary institution login code — will be fetched from Firestore once Principal panel is built
+    private static final String INSTITUTION_LOGIN_CODE = "Login";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,9 @@ public class RegisterActivity extends AppCompatActivity {
         etUucms = findViewById(R.id.etUucms);
         etCourse = findViewById(R.id.etCourse);
         etSem = findViewById(R.id.etSem);
+        etLoginCode = findViewById(R.id.etLoginCode);
         progressRegister = findViewById(R.id.progressRegister);
+
 
         // Smooth animations
         viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
@@ -71,16 +77,36 @@ public class RegisterActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(v -> {
             String selectedRole = spinnerRole.getSelectedItem().toString();
             String selectedYear = spinnerYear.getSelectedItem().toString();
-            String name = etName.getText().toString().trim();
-            String phone = etPhone.getText().toString().trim();
-            String email = etRegEmail.getText().toString().trim();
+            String name     = etName.getText().toString().trim();
+            String phone    = etPhone.getText().toString().trim();
+            String email    = etRegEmail.getText().toString().trim();
             String password = etRegPassword.getText().toString().trim();
-            String uucms = etUucms.getText().toString().trim();
-            String course = etCourse.getText().toString().trim();
-            String sem = etSem.getText().toString().trim();
+            String uucms    = etUucms.getText().toString().trim();
+            String course   = etCourse.getText().toString().trim();
+            String sem      = etSem.getText().toString().trim();
+            String loginCode = etLoginCode.getText().toString().trim();
 
+            // ── Validations ──
             if (name.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all personal details", Toast.LENGTH_SHORT).show();
+                switchToPersonal();
+                return;
+            }
+
+            // Students must supply their UUCMS ID
+            if (selectedRole.equals("Student") && uucms.isEmpty()) {
+                Toast.makeText(this, "UUCMS ID is mandatory for students", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate institution login code
+            if (loginCode.isEmpty()) {
+                Toast.makeText(this, "Please enter the institution login code", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!loginCode.equals(INSTITUTION_LOGIN_CODE)) {
+                Toast.makeText(this, "Invalid login code. Contact your institution.", Toast.LENGTH_LONG).show();
+                etLoginCode.setError("Invalid code");
                 return;
             }
 
@@ -99,13 +125,14 @@ public class RegisterActivity extends AppCompatActivity {
                         userMap.put("phone", phone);
                         userMap.put("email", email);
                         userMap.put("role", selectedRole);
-                        userMap.put("uucms", uucms);
-                        userMap.put("course", course);
+                        userMap.put("uucmsId", uucms);   // Standardised key
+                        userMap.put("department", course);
                         userMap.put("year", selectedYear);
-                        userMap.put("sem", sem);
+                        userMap.put("semester", sem);
 
                         if (selectedRole.equals("Student")) {
                             userMap.put("honorScore", 500);
+                            userMap.put("section", "Sec A"); // Default for now
                         }
 
                         FirebaseFirestore.getInstance().collection("users").document(uid).set(userMap)
@@ -116,6 +143,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 Intent intent;
                                 if (selectedRole.equals("Teacher")) {
                                     intent = new Intent(RegisterActivity.this, TeacherDashboardActivity.class);
+                                } else if (selectedRole.equals("HOD")) {
+                                    intent = new Intent(RegisterActivity.this, HodDashboardActivity.class);
                                 } else if (selectedRole.equals("PT Admin")) {
                                     intent = new Intent(RegisterActivity.this, PtAdminDashboardActivity.class);
                                 } else {
