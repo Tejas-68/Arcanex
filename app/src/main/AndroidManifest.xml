@@ -45,6 +45,7 @@
         <activity android:name=".TournamentDetailActivity" android:exported="false" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".PrincipalDashboardActivity" android:exported="false" />
         <activity android:name=".HodDashboardActivity" android:exported="false" />
+        <activity android:name=".HodTakeAttendanceActivity" android:exported="false" />
         <activity android:name=".AttendanceScannerActivity" android:exported="false" android:theme="@style/Theme.ProCollegia.NoActionBar" />
         <activity android:name=".TournamentRegistrationActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".CreateTournamentActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />

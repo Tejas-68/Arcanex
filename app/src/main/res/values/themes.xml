@@ -91,6 +91,14 @@
         <item name="android:backgroundTint">@android:color/transparent</item>
     </style>
 
+    <style name="ProCollegia.Button.Outline.Small" parent="ProCollegia.Button.Outline">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">32dp</item>
+    </style>
+
     <!-- Profile info row: horizontal, 56dp tall, padded -->
     <style name="ProfileRow">
         <item name="android:layout_width">match_parent</item>

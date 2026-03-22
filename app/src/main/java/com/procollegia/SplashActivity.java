@@ -68,6 +68,8 @@ public class SplashActivity extends AppCompatActivity {
             intent = new Intent(this, PtAdminDashboardActivity.class);
         } else if ("Principal".equals(role)) {
             intent = new Intent(this, PrincipalDashboardActivity.class);
+        } else if ("HOD".equals(role)) {
+            intent = new Intent(this, HodDashboardActivity.class);
         } else {
             intent = new Intent(this, StudentDashboardActivity.class);
         }
